@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vishnu Moguluri | Aspiring Pentester</title>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- AOS.js for Scroll Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* CSS Reset and Basic Setup */
+        :root {
+            --primary-color: #000000;
+            --secondary-color: #ffffff;
+            --accent-color: #910e00;
+            --bg-color: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+            margin: 0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: -1.5rem auto 3rem;
+            color: #555;
+        }
+
+        /* Particles.js Background */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background-color: var(--bg-color);
+        }
+
+        /* Hero Section */
+        #hero {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            z-index: 1;
+        }
+        
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--accent-color);
+            box-shadow: 0 8px 24px var(--shadow-color);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.05);
+        }
+
+        #hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin: 0.5rem 0;
+        }
+
+        .typewriter-text {
+            border-right: .15em solid var(--accent-color);
+            white-space: nowrap;
+            overflow: hidden;
+            letter-spacing: .1em;
+            animation: typing 3.5s steps(30, end) forwards, blink-caret .75s step-end infinite;
+            display: inline-block;
+            max-width: 0;
+        }
+
+        /* Typewriter Animation */
+        @keyframes typing {
+            from { max-width: 0 }
+            to { max-width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--accent-color); }
+        }
+        
+        #hero p {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        #hero .education {
+            font-size: 1.1rem;
+            color: #555;
+        }
+        
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: var(--secondary-color);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px var(--shadow-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .skill-card i {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+        
+        .skill-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .skill-card p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 10px;
+            background-color: var(--accent-color);
+            width: 0; /* Initial width */
+            border-radius: 10px;
+            transition: width 1s ease-in-out;
+        }
+
+        /* Certifications Section */
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .cert-card {
+            background: var(--secondary-color);
+            border-radius: 12px;
+            box-shadow: 0 8px 16px var(--shadow-color);
+            padding: 2.5rem 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .cert-card i {
+            font-size: 4rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .cert-card h3 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+        
+        .cert-card p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 1rem;
+            min-height: 50px; /* Ensures consistent card height */
+        }
+
+        /* Social Links Section */
+        #socials {
+            background-color: #f9f9f9;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .social-icons a {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-color);
+            transform: scale(1.2);
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            text-decoration: none;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            background-color: #111;
+            color: #eee;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #hero h1 {
+                font-size: 2.5rem;
+            }
+            #hero p {
+                font-size: 1.2rem;
+            }
+            .section-title {
+                font-size: 2.2rem;
+            }
+            .skills-grid, .certifications-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Background Animation -->
+    <div id="particles-js"></div>
+    
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-content" data-aos="fade-in" data-aos-duration="1000">
+            <img src="./vm.png" alt="Profile Photo" class="profile-photo">
+            <h1>Vishnu Moguluri</h1>
+            <p><span class="typewriter-text">Aspiring Pentester</span></p>
+            <p class="education">B.Tech 1st Year Student</p>
+        </div>
+    </section>
+
+    <main>
+        <!-- Skills Section -->
+        <section id="skills">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">My Skills</h2>
+                <p class="section-description" data-aos="fade-up" data-aos-delay="50">
+                    Leveraging a robust skill set in system administration, network infrastructure, and offensive security to build and secure modern digital environments.
+                </p>
+                <div class="skills-grid">
+                    <!-- Skill 1: Linux -->
+                    <div class="skill-card" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fab fa-linux"></i>
+                        <h3>Linux</h3>
+                        <p>Proficient in command-line administration, shell scripting, and system hardening across major distributions.</p>
+                        <div class="progress-bar">
+                            <div class="progress" data-width="85%"></div>
+                        </div>
+                    </div>
+                    <!-- Skill 2: Networking -->
+                    <div class="skill-card" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-network-wired"></i>
+                        <h3>Networking</h3>
+                        <p>Strong understanding of TCP/IP protocols, network architecture, and configuring common network devices.</p>
+                        <div class="progress-bar">
+                            <div class="progress" data-width="75%"></div>
+                        </div>
+                    </div>
+                    <!-- Skill 3: Pentesting -->
+                    <div class="skill-card" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-user-secret"></i>
+                        <h3>Pentesting</h3>
+                        <p>Experience in vulnerability assessment, exploitation techniques, and reporting for web and network targets.</p>
+                        <div class="progress-bar">
+                            <div class="progress" data-width="60%"></div>
+                        </div>
+                    </div>
+                    <!-- Skill 4: Python -->
+                    <div class="skill-card" data-aos="fade-up" data-aos-delay="400">
+                        <i class="fab fa-python"></i>
+                        <h3>Python</h3>
+                        <p>Skilled in developing custom security tools, automating tasks, and scripting for penetration testing engagements.</p>
+                        <div class="progress-bar">
+                            <div class="progress" data-width="80%"></div>
+                        </div>
+                    </div>
+                    <!-- Skill 5: C -->
+                    <div class="skill-card" data-aos="fade-up" data-aos-delay="500">
+                         <i class="fas fa-code"></i>
+                        <h3>C Programming</h3>
+                        <p>Solid foundation in low-level programming and memory management, essential for exploit development concepts.</p>
+                        <div class="progress-bar">
+                            <div class="progress" data-width="70%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications" style="background-color: #f9f9f9;">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Certifications</h2>
+                <p class="section-description" data-aos="fade-up" data-aos-delay="50">
+                    A portfolio of industry-recognized certifications that validate my expertise in cybersecurity and enterprise system administration.
+                </p>
+                <div class="certifications-grid">
+                    <div class="cert-card" data-aos="fade-up" data-aos-delay="100">
+                        <img src="./OSCP.png" alt="Profile Photo" width="200">
+                        <h3>OSCP</h3>
+                        <p>Demonstrates the practical ability to compromise various systems in a hands-on, live lab environment.</p>
+                    </div>
+                    <div class="cert-card" data-aos="fade-up" data-aos-delay="200">
+                        <img src="./Redhat-logo.webp" alt="Profile Photo" width="200">
+                        <h3>RHSCA</h3>
+                        <p>Validates core system administration skills for Red Hat Enterprise Linux environments.</p>
+                    </div>
+                    <div class="cert-card" data-aos="fade-up" data-aos-delay="300">
+                        <img src="./Network +.png" alt="Profile Photo" width="200">
+                        <h3>Network+</h3>
+                        <p>Certifies essential knowledge to troubleshoot, configure, and manage common network devices.</p>
+                    </div>
+                    <div class="cert-card" data-aos="fade-up" data-aos-delay="400">
+                        <img src="./pentest.png" alt="Profile Photo" width="200">
+                        <h3>Pentest+</h3>
+                        <p>Proves hands-on ability to perform pen tests, including planning, scoping, and managing weaknesses.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Socials Section -->
+        <section id="socials">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Connect With Me</h2>
+                <p class="section-description" data-aos="fade-up" data-aos-delay="50">
+                    I'm always open to discussing new projects, creative ideas, or opportunities to be part of an ambitious team. Let's connect.
+                </p>
+                <div class="social-icons" data-aos="fade-up" data-aos-delay="100">
+                    <a href="https://www.instagram.com/vishnunotnice_/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://github.com/VishnuMoguluri" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/sri-vishnu-moguluri-b743b1379/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="mailto:contact@vishnumoguluri.io" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.youtube.com/@CyberCraft-07" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Vishnu Moguluri. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#hero" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Scripts -->
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
+    <!-- AOS.js -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        // Initialize AOS.js
+        AOS.init({
+            once: true, // Whether animation should happen only once - while scrolling down
+            mirror: false, // Whether elements should animate out while scrolling past them
+        });
+
+        // Particles.js Configuration
+        particlesJS("particles-js", {
+          "particles": {
+            "number": {
+              "value": 80,
+              "density": {
+                "enable": true,
+                "value_area": 800
+              }
+            },
+            "color": {
+              "value": "#cccccc"
+            },
+            "shape": {
+              "type": "circle",
+            },
+            "opacity": {
+              "value": 0.5,
+              "random": false,
+            },
+            "size": {
+              "value": 3,
+              "random": true,
+            },
+            "line_linked": {
+              "enable": true,
+              "distance": 150,
+              "color": "#dddddd",
+              "opacity": 0.4,
+              "width": 1
+            },
+            "move": {
+              "enable": true,
+              "speed": 2,
+              "direction": "none",
+              "random": false,
+              "straight": false,
+              "out_mode": "out",
+              "bounce": false,
+            }
+          },
+          "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+              "onhover": {
+                "enable": true,
+                "mode": "repulse"
+              },
+              "onclick": {
+                "enable": true,
+                "mode": "push"
+              },
+              "resize": true
+            },
+            "modes": {
+              "repulse": {
+                "distance": 100,
+                "duration": 0.4
+              },
+              "push": {
+                "particles_nb": 4
+              },
+            }
+          },
+          "retina_detect": true
+        });
+        
+        // Back to Top Button Logic
+        const backToTopButton = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+        
+        // Animated Progress Bars Logic
+        const skillsSection = document.querySelector('#skills');
+        const progressBars = document.querySelectorAll('.progress');
+
+        const animateProgressBars = () => {
+            progressBars.forEach(bar => {
+                const barWidth = bar.getAttribute('data-width');
+                bar.style.width = barWidth;
+            });
+        };
+        
+        // Using Intersection Observer to trigger animation when section is in view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateProgressBars();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        observer.observe(skillsSection);
+        
+    </script>
+</body>
+</html>
+
+
+
